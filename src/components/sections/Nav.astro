@@ -1,0 +1,33 @@
+---
+interface Props {
+  variant?: 'default' | 'over-hero';
+}
+const { variant = 'default' } = Astro.props;
+const navClass = variant === 'over-hero' ? 'nav nav--over-hero' : 'nav';
+const links = [
+  { href: '/about-us', label: 'Nosotros' },
+  { href: '/services', label: 'Servicios' },
+  { href: '/projects', label: 'Proyectos' },
+  { href: '/clients', label: 'Clientes' },
+  { href: '/contact-us', label: 'Contacto' },
+];
+---
+<nav class={navClass} aria-label="Navegación principal">
+  <div class="nav__inner">
+    <a href="/" class="nav__wordmark">Genesys</a>
+    <div class="nav__menu" role="navigation">
+      {links.map((link) => <a href={link.href} class="nav__link">{link.label}</a>)}
+    </div>
+    <div class="nav__actions">
+      <a href="/contact-us" class="btn btn-primary btn-sm">Agendar llamada</a>
+      <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav__backdrop" aria-hidden="true"></div>
+<script>
+  import { initNav } from '../../scripts/nav';
+  initNav();
+</script>
