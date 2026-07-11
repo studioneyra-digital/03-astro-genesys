@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+const { title, description, ogImage = '/assets/img/og-image.jpg' } = Astro.props;
+---
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <script is:inline>
+    (function () {
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!mq || !mq.matches) document.documentElement.classList.add('hero-anim');
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/animate.min.css" />
+  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="/assets/css/bootstrap-grid.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <slot />
+
+  <script is:inline src="/assets/js/swiper-bundle.min.js"></script>
+  <script is:inline src="/assets/js/wow.min.js"></script>
+  <script is:inline src="/assets/js/gsap.min.js"></script>
+  <script is:inline src="/assets/js/ScrollTrigger.min.js"></script>
+  <script is:inline src="https://unpkg.com/lucide@latest"></script>
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide) window.lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
