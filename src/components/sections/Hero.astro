@@ -1,0 +1,44 @@
+---
+interface CtaLink {
+  label: string;
+  href: string;
+}
+interface Props {
+  eyebrowText: string;
+  sub: string;
+  bgImage: string;
+  ctaPrimary: CtaLink;
+  ctaSecondary?: CtaLink;
+  note?: string;
+}
+const { eyebrowText, sub, bgImage, ctaPrimary, ctaSecondary, note } = Astro.props;
+---
+<section class="hero" aria-labelledby="hero-title">
+  <img class="hero__bg" src={bgImage} alt="" aria-hidden="true" loading="eager" />
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero__content">
+      <span class="eyebrow eyebrow--inverse hero__reveal">{eyebrowText}</span>
+      <h1 class="hero__title" id="hero-title">
+        <slot name="title" />
+      </h1>
+      <p class="hero__sub hero__reveal">{sub}</p>
+      <div class="hero__ctas hero__reveal">
+        <a href={ctaPrimary.href} class="btn btn-primary">{ctaPrimary.label}</a>
+        {ctaSecondary && <a href={ctaSecondary.href} class="btn btn-outline-light">{ctaSecondary.label}</a>}
+      </div>
+      {note && (
+        <p class="hero__note hero__reveal">
+          <i data-lucide="shield-check"></i>
+          {note}
+        </p>
+      )}
+    </div>
+  </div>
+</section>
+<script>
+  import { initHeroReveal } from '../../scripts/hero-reveal';
+  initHeroReveal();
+</script>

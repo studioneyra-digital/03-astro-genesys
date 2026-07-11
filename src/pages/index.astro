@@ -1,11 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/sections/Nav.astro';
+import Hero from '../components/sections/Hero.astro';
 import Footer from '../components/sections/Footer.astro';
 import ScrollTop from '../components/elements/ScrollTop.astro';
 ---
 <BaseLayout title="Genesys | Starter Theme" description="Scaffold check">
   <Nav variant="over-hero" />
+  <Hero
+    eyebrowText="Tecnología · Estrategia · Resultados"
+    sub="Somos un equipo de ingenieros, diseñadores y estrategas obsesionados con crear productos digitales que generan impacto real. Sin humo, sin atajos."
+    bgImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80&auto=format&fit=crop"
+    ctaPrimary={{ label: 'Conoce nuestra historia', href: '#about' }}
+    ctaSecondary={{ label: 'Ver proyectos', href: '/projects' }}
+    note="Más de 120 proyectos entregados en 8 países"
+  >
+    <Fragment slot="title">
+      <span class="hero__line"><span>Construimos el</span></span>
+      <span class="hero__line"><span>futuro digital de <span class="accent">tu empresa</span></span></span>
+      <span class="hero__line"><span>desde hoy.</span></span>
+    </Fragment>
+  </Hero>
   <Footer />
   <ScrollTop />
 </BaseLayout>
