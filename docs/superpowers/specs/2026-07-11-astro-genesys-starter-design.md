@@ -69,8 +69,10 @@ automatizados, internacionalización (queda en `es` como el original).
 
 ## Componentes y páginas
 
-Mapeo del catálogo `ui-kit.html` (Foundations / Elements / Components
-primary / Components secondary) a componentes `.astro`:
+**Alcance de componentes reducido a los que realmente usan las 6 páginas**
+(no se porta el catálogo completo de ~40 componentes de `ui-kit.html`,
+solo los que aparecen en el contenido real de index/about-us/services/
+projects/clients/contact-us):
 
 ```
 src/
@@ -78,16 +80,14 @@ src/
 │   ├── BaseLayout.astro      # <head>: meta/SEO/OG/Twitter/favicon, carga CSS/JS globales
 │   └── PageLayout.astro      # Nav + Sub-hero + slot + CTA band + Footer (páginas internas)
 ├── components/
-│   ├── elements/       Button, Badge, Card, FormField, Alert, Divider,
-│   │                   Stepper, Avatar, Chip, Tooltip, Spinner, ProgressBar,
-│   │                   ScrollTop, CookieBanner, Pagination, TrustBadge
-│   ├── sections/       Nav, Hero, SubHero, Footer, CtaBand, Faqs,
-│   │                   ServiceCard, ServicesGrid, ProjectCard, ProjectsGrid,
-│   │                   Plans, Newsletter, ContactStrip, Testimonials,
-│   │                   PostCard, ClientLogos, ProcessSteps
-│   ├── advanced/       MegaMenu, OffCanvasNav, Marquee, Tabs,
-│   │                   ComparisonTable, StatsCounter, Team, Timeline,
-│   │                   VideoSection, GalleryFilter, Modal, EmptyState
+│   ├── elements/       Button, Badge (eyebrow), Card (icon-box), FormField,
+│   │                   Alert (éxito/error de formularios), ScrollTop,
+│   │                   CookieBanner
+│   ├── sections/       Nav (con off-canvas integrado), Hero, SubHero,
+│   │                   Footer, CtaBand, ServiceCard, ServicesGrid,
+│   │                   ProjectCard, ProjectsGrid, Plans, Newsletter,
+│   │                   ContactStrip, Testimonials, ClientLogos,
+│   │                   ProcessSteps, StatsCounter
 │   └── WhatsAppButton.astro   # configurable vía env, oculto si no hay número
 └── pages/
     ├── index.astro
@@ -96,8 +96,16 @@ src/
     ├── projects.astro
     ├── clients.astro
     ├── contact-us.astro
-    └── ui-kit.astro
+    └── ui-kit.astro           # catálogo solo de los componentes portados arriba
 ```
+
+**Fuera de alcance v1** (no están en el contenido real de las 6 páginas,
+se pueden agregar después si un proyecto concreto los necesita): FAQs,
+Blog/Post Cards, Team Section, Mega Menu, Marquee, Tabs, Comparison Table,
+Timeline, Video Section, Gallery/Portfolio Filter, Modal/Drawer, Empty
+State, Trust Badges, Pagination, Tooltips, Loaders/Spinners, Progress bars,
+Chips/Tags, Avatars sueltos, Dividers, Steppers genéricos, Off-Canvas Nav
+como componente separado (va integrado en `Nav`), Navigation advanced.
 
 Convenciones heredadas del UI-kit:
 
