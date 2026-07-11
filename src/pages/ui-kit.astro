@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/elements/Button.astro';
+import Badge from '../components/elements/Badge.astro';
+import Eyebrow from '../components/elements/Eyebrow.astro';
+import Card from '../components/elements/Card.astro';
+import Alert from '../components/elements/Alert.astro';
+import FormField from '../components/elements/FormField.astro';
+import ScrollTop from '../components/elements/ScrollTop.astro';
+
+const sections = [
+  { id: 's-buttons', label: 'Buttons' },
+  { id: 's-badges', label: 'Badges & Eyebrows' },
+  { id: 's-cards', label: 'Cards' },
+  { id: 's-forms', label: 'Forms' },
+  { id: 's-alerts', label: 'Alerts' },
+  { id: 's-scrolltop', label: 'Scroll Top' },
+  { id: 's-services', label: 'Service Cards' },
+  { id: 's-plans', label: 'Plans' },
+  { id: 's-stats', label: 'Stats Counter' },
+];
+---
+<BaseLayout title="UI Kit | Genesys" description="Catálogo de componentes del starter Genesys.">
+  <div class="kit-layout" style="display:flex;">
+    <aside class="kit-sidebar" style="position:sticky; top:0; height:100vh; overflow-y:auto; flex-shrink:0; width:260px;">
+      <nav>
+        {sections.map((s) => (
+          <a href={`#${s.id}`} class="kit-nav__link">{s.label}</a>
+        ))}
+      </nav>
+    </aside>
+
+    <main style="flex:1; padding:var(--space-8);">
+      <section class="kit-section" id="s-buttons">
+        <span class="kit-section__tag">Element</span>
+        <h2 class="kit-section__title">Buttons</h2>
+        <div class="kit-demo">
+          <Button variant="primary">Comenzar ahora</Button>
+          <Button variant="outline">Ver servicios</Button>
+        </div>
+        <div class="kit-snippet"><pre><code>&lt;Button variant="primary"&gt;Comenzar ahora&lt;/Button&gt;
+&lt;Button variant="outline"&gt;Ver servicios&lt;/Button&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-badges">
+        <span class="kit-section__tag">Element</span>
+        <h2 class="kit-section__title">Badges &amp; Eyebrows</h2>
+        <div class="kit-demo">
+          <Badge variant="accent">Nuevo</Badge>
+          <Badge variant="dark">Destacado</Badge>
+          <Eyebrow>Nuestros servicios</Eyebrow>
+        </div>
+        <div class="kit-snippet"><pre><code>&lt;Badge variant="accent"&gt;Nuevo&lt;/Badge&gt;
+&lt;Eyebrow&gt;Nuestros servicios&lt;/Eyebrow&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-cards">
+        <span class="kit-section__tag">Element</span>
+        <h2 class="kit-section__title">Cards</h2>
+        <div class="kit-demo" style="display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-5);">
+          <Card icon="layers"><h3>Diseño modular</h3><p>Componentes reutilizables y consistentes.</p></Card>
+          <Card variant="dark" icon="zap" iconOnDark><h3>Alto rendimiento</h3><p>Interfaces rápidas y eficientes.</p></Card>
+        </div>
+        <div class="kit-snippet"><pre><code>&lt;Card icon="layers"&gt;&lt;h3&gt;Diseño modular&lt;/h3&gt;&lt;p&gt;...&lt;/p&gt;&lt;/Card&gt;
+&lt;Card variant="dark" icon="zap" iconOnDark&gt;&lt;h3&gt;Alto rendimiento&lt;/h3&gt;&lt;p&gt;...&lt;/p&gt;&lt;/Card&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-forms">
+        <span class="kit-section__tag">Element</span>
+        <h2 class="kit-section__title">Forms</h2>
+        <div class="kit-demo kit-demo--col" style="max-width:480px;">
+          <FormField id="kit-email" name="email" type="email" label="Correo electrónico" />
+          <FormField id="kit-service" name="service" type="select" label="Servicio de interés" options={['Diseño web', 'Desarrollo frontend']} />
+        </div>
+        <div class="kit-snippet"><pre><code>&lt;FormField id="c-email" name="email" type="email" label="Correo electrónico" /&gt;
+&lt;FormField id="c-service" name="service" type="select" label="Servicio" options={['Diseño web']} /&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-alerts">
+        <span class="kit-section__tag">Element</span>
+        <h2 class="kit-section__title">Alerts</h2>
+        <div class="kit-demo kit-demo--col">
+          <Alert variant="success" icon="check-circle" title="¡Listo!">Los cambios fueron guardados correctamente.</Alert>
+          <Alert variant="error" icon="x-circle" title="Error">No se pudo procesar el pago.</Alert>
+        </div>
+        <div class="kit-snippet"><pre><code>&lt;Alert variant="success" icon="check-circle" title="¡Listo!"&gt;Mensaje.&lt;/Alert&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-scrolltop">
+        <span class="kit-section__tag">Element</span>
+        <h2 class="kit-section__title">Scroll Top</h2>
+        <div class="kit-demo" style="position:relative; min-height:80px;">
+          <button class="scroll-top is-visible" style="position:static; transform:none;" aria-label="Volver arriba">
+            <i data-lucide="arrow-up"></i>
+          </button>
+        </div>
+        <div class="kit-snippet"><pre><code>&lt;ScrollTop /&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-services">
+        <span class="kit-section__tag">Component</span>
+        <h2 class="kit-section__title">Service Cards</h2>
+        <p class="kit-section__desc">Ver también <code>ServicesGrid.astro</code>, que renderiza estas cards desde la colección <code>services</code>.</p>
+        <div class="kit-snippet"><pre><code>&lt;ServicesGrid /&gt;
+&lt;ServicesGrid featuredOnly /&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-plans">
+        <span class="kit-section__tag">Component</span>
+        <h2 class="kit-section__title">Plans</h2>
+        <p class="kit-section__desc">Ver <code>Plans.astro</code>, que renderiza desde la colección <code>plans</code> (JSON en <code>src/content/plans/</code>).</p>
+        <div class="kit-snippet"><pre><code>&lt;Plans /&gt;</code></pre></div>
+      </section>
+
+      <section class="kit-section" id="s-stats">
+        <span class="kit-section__tag">Component</span>
+        <h2 class="kit-section__title">Stats Counter</h2>
+        <p class="kit-section__desc">Ver <code>StatsCounter.astro</code> — anima los números al entrar en el viewport.</p>
+        <div class="kit-snippet"><pre><code>&lt;StatsCounter items={[{ value: 120, suffix: '+', label: 'Proyectos' }]} /&gt;</code></pre></div>
+      </section>
+    </main>
+  </div>
+
+  <ScrollTop />
+</BaseLayout>
