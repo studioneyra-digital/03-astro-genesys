@@ -139,7 +139,6 @@ const projects = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    client: z.string(),
     tags: z.array(z.string()),
     image: z.string(),
     year: z.number(),
@@ -153,6 +152,7 @@ const testimonials = defineCollection({
     name: z.string(),
     role: z.string(),
     company: z.string(),
+    quote: z.string(),
     avatar: z.string().optional(),
     rating: z.number().min(1).max(5).default(5),
   }),
@@ -162,8 +162,8 @@ const plans = defineCollection({
   type: 'data',
   schema: z.object({
     name: z.string(),
-    price: z.number(),
-    period: z.enum(['month', 'year', 'one-time']),
+    price: z.string(),
+    period: z.enum(['month', 'year', 'one-time', 'custom']),
     features: z.array(z.string()),
     highlighted: z.boolean().default(false),
   }),
