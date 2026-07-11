@@ -1,0 +1,30 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import ClientLogos from '../components/sections/ClientLogos.astro';
+---
+<PageLayout
+  title="Clientes | Genesys"
+  description="Testimonios de empresas que han trabajado con Genesys."
+  subhero={{
+    eyebrow: 'Testimonios',
+    title: 'Empresas que confían en nosotros',
+    breadcrumb: [{ label: 'Inicio', href: '/' }, { label: 'Clientes' }],
+  }}
+  cta={{
+    title: 'Únete a nuestros clientes',
+    text: 'Agenda una consulta gratuita y descubre cómo podemos impulsar tu negocio digital.',
+    ctaPrimary: { label: 'Agendar ahora', href: '/contact-us' },
+  }}
+>
+  <section class="section">
+    <div class="container">
+      <Testimonials variant="light" />
+    </div>
+  </section>
+  <section class="section" style="background:var(--color-bg-soft);">
+    <div class="container">
+      <ClientLogos />
+    </div>
+  </section>
+</PageLayout>
