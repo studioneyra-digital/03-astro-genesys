@@ -1,0 +1,11 @@
+---
+const logos = ['TechCorp', 'Innolab', 'Nexus', 'Stratify', 'Velox', 'Orbita'];
+---
+<div>
+  <p class="logos-section__label">Empresas que confían en nosotros</p>
+  <div class="logos-grid">
+    {logos.map((logo) => (
+      <div class="logo-item"><div class="logo-placeholder">{logo}</div></div>
+    ))}
+  </div>
+</div>

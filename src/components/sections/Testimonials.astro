@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  variant?: 'dark' | 'light';
+}
+const { variant = 'dark' } = Astro.props;
+const testimonials = await getCollection('testimonials');
+---
+<div class="testimonials-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5); align-items:start;">
+  {testimonials.map((t) => (
+    <div class={variant === 'light' ? 'testimonial-card testimonial-card--light' : 'testimonial-card'}>
+      <div class="testimonial-card__stars">
+        {Array.from({ length: t.data.rating }).map(() => (
+          <i data-lucide="star" style="width:18px;height:18px;fill:currentColor;"></i>
+        ))}
+      </div>
+      <p class="testimonial-card__quote">"{t.data.quote}"</p>
+      <div class="testimonial-card__author">
+        {t.data.avatar && <img class="testimonial-card__avatar" src={t.data.avatar} alt={t.data.name} />}
+        <div>
+          <div class="testimonial-card__name">{t.data.name}</div>
+          <div class="testimonial-card__role">{t.data.role} · {t.data.company}</div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
