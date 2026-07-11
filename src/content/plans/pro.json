@@ -1,0 +1,7 @@
+{
+  "name": "Pro",
+  "price": "$990",
+  "period": "one-time",
+  "features": ["Hasta 12 páginas", "Diseño a medida", "CMS integrado", "SEO avanzado", "Revisiones ilimitadas"],
+  "highlighted": true
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Enterprise",
+  "price": "Custom",
+  "period": "custom",
+  "features": ["Páginas ilimitadas", "Integraciones API", "Soporte prioritario", "SLA garantizado"],
+  "highlighted": false
+}
