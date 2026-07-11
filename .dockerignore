@@ -1,0 +1,12 @@
+node_modules
+dist
+.astro
+.git
+.gitignore
+docs
+.superpowers
+.claude
+*.md
+.env
+.env.*
+!.env.example
