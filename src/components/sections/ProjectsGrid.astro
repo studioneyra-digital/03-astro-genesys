@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  limit?: number;
+}
+const { limit } = Astro.props;
+const allProjects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const projects = limit ? allProjects.slice(0, limit) : allProjects;
+---
+<div class="projects__grid">
+  {projects.map((project, i) => (
+    <ProjectCard
+      title={project.data.title}
+      image={project.data.image}
+      tag={project.data.tags.join(' · ')}
+      num={`${String(i + 1).padStart(2, '0')} · ${project.data.year}`}
+    />
+  ))}
+</div>

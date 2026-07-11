@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  tag: string;
+  num: string;
+}
+const { title, image, tag, num } = Astro.props;
+---
+<div class="project-card">
+  <img class="project-card__img" src={image} alt={title} loading="lazy" />
+  <div class="project-card__overlay">
+    <span class="project-card__num">{num}</span>
+    <h3 class="project-card__title">{title}</h3>
+    <span class="project-card__tag">{tag}</span>
+  </div>
+</div>
