@@ -1,0 +1,25 @@
+---
+interface CtaLink {
+  label: string;
+  href: string;
+}
+interface Props {
+  title: string;
+  text: string;
+  ctaPrimary: CtaLink;
+  ctaSecondary?: CtaLink;
+  variant?: 'accent' | 'dark' | 'light';
+}
+const { title, text, ctaPrimary, ctaSecondary, variant = 'accent' } = Astro.props;
+const bandClass = variant === 'accent' ? 'cta-band' : `cta-band cta-band--${variant}`;
+---
+<div class={bandClass}>
+  <div class="cta-band__inner">
+    <h2 class="cta-band__title">{title}</h2>
+    <p class="cta-band__text">{text}</p>
+    <div class="cta-band__btns">
+      <a href={ctaPrimary.href} class="btn btn-primary">{ctaPrimary.label}</a>
+      {ctaSecondary && <a href={ctaSecondary.href} class="btn btn-outline-light">{ctaSecondary.label}</a>}
+    </div>
+  </div>
+</div>

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/sections/Nav.astro';
 import Hero from '../components/sections/Hero.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
 import Footer from '../components/sections/Footer.astro';
 import ScrollTop from '../components/elements/ScrollTop.astro';
 ---
@@ -21,6 +22,12 @@ import ScrollTop from '../components/elements/ScrollTop.astro';
       <span class="hero__line"><span>desde hoy.</span></span>
     </Fragment>
   </Hero>
+  <CtaBand
+    title="¿Listo para dar el siguiente paso?"
+    text="Agenda una consulta gratuita y descubre cómo podemos impulsar tu negocio digital."
+    ctaPrimary={{ label: 'Agendar ahora', href: '/contact-us' }}
+    ctaSecondary={{ label: 'Ver proyectos', href: '/projects' }}
+  />
   <Footer />
   <ScrollTop />
 </BaseLayout>
