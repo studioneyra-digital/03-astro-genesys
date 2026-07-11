@@ -9,7 +9,7 @@ function periodLabel(period: string): string {
   return 'pago único';
 }
 ---
-<div class="plans-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5); align-items:start;">
+<div class="plans__grid">
   {plans.map((plan) => (
     <div class={plan.data.highlighted ? 'plan-card plan-card--featured' : 'plan-card'}>
       {plan.data.highlighted && <div class="plan-card__badge">Más popular</div>}

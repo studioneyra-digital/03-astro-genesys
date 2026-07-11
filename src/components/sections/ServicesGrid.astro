@@ -11,7 +11,7 @@ const services = (featuredOnly ? allServices.filter((s) => s.data.featured) : al
   (a, b) => a.data.order - b.data.order
 );
 ---
-<div class="services-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5);">
+<div class="services__grid">
   {services.map((service) => (
     <ServiceCard title={service.data.title} icon={service.data.icon} excerpt={service.data.excerpt} />
   ))}
