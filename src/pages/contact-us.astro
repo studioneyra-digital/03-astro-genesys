@@ -1,0 +1,41 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/sections/ContactForm.astro';
+import ContactStrip from '../components/sections/ContactStrip.astro';
+---
+<PageLayout
+  title="Contacto | Genesys"
+  description="Ponte en contacto con el equipo de Genesys."
+  subhero={{
+    eyebrow: 'Hablemos',
+    title: 'Contáctanos',
+    breadcrumb: [{ label: 'Inicio', href: '/' }, { label: 'Contacto' }],
+  }}
+  cta={{
+    title: '¿Prefieres una llamada?',
+    text: 'Agenda una sesión de 30 minutos sin compromiso.',
+    ctaPrimary: { label: 'Agendar ahora', href: '#' },
+    variant: 'dark',
+  }}
+>
+  <section class="section">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-6">
+          <span class="eyebrow">Escríbenos</span>
+          <h2 class="section-title">Cuéntanos sobre tu proyecto</h2>
+          <p class="section-lead">
+            Completa el formulario y te contactaremos en menos de 24 horas para agendar una
+            primera conversación.
+          </p>
+          <div style="margin-top:var(--space-8);">
+            <ContactStrip />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
