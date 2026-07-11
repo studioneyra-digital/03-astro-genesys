@@ -27,7 +27,7 @@ Construir un starter Astro que:
    layout Bento Grid, animaciones) sin reescribir estilos.
 2. Elimine la dependencia de jQuery, portando `main.js` a módulos ES nativos.
 3. Estructure el contenido repetible (servicios, proyectos, testimonios,
-   planes, equipo) como Astro Content Collections, para que reutilizar el
+   planes) como Astro Content Collections, para que reutilizar el
    starter en otro proyecto sea cuestión de reemplazar contenido, no código.
 4. Quede listo para desplegarse vía Docker (build estático + Nginx) en un VPS
    propio, con entornos de staging y producción.
@@ -119,7 +119,7 @@ Convenciones heredadas del UI-kit:
 
 ## Content Collections
 
-`src/content/config.ts` define 5 colecciones con schema Zod:
+`src/content/config.ts` define 4 colecciones con schema Zod:
 
 ```ts
 import { defineCollection, z } from 'astro:content';
@@ -169,20 +169,7 @@ const plans = defineCollection({
   }),
 });
 
-const team = defineCollection({
-  type: 'content',
-  schema: z.object({
-    name: z.string(),
-    role: z.string(),
-    photo: z.string(),
-    socials: z.object({
-      linkedin: z.string().optional(),
-      twitter: z.string().optional(),
-    }).optional(),
-  }),
-});
-
-export const collections = { services, projects, testimonials, plans, team };
+export const collections = { services, projects, testimonials, plans };
 ```
 
 Contenido de muestra: branding genérico "Genesys" (tech/B2B), copy e
