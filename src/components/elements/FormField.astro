@@ -1,0 +1,35 @@
+---
+interface Props {
+  type?: 'text' | 'email' | 'tel' | 'textarea' | 'select';
+  id: string;
+  name: string;
+  label: string;
+  required?: boolean;
+  options?: string[];
+  error?: string;
+}
+const { type = 'text', id, name, label, required = false, options = [], error } = Astro.props;
+const groupClass = type === 'select' ? 'form-group form-group--select' : 'form-group';
+const controlClass = [
+  'form-control',
+  type === 'textarea' && 'form-control--textarea',
+  type === 'select' && 'form-control--select',
+  error && 'error',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+<div class={groupClass}>
+  {type === 'textarea' ? (
+    <textarea class={controlClass} id={id} name={name} placeholder=" " required={required}></textarea>
+  ) : type === 'select' ? (
+    <select class={controlClass} id={id} name={name} required={required}>
+      <option value="" disabled selected></option>
+      {options.map((opt) => <option value={opt}>{opt}</option>)}
+    </select>
+  ) : (
+    <input type={type} class={controlClass} id={id} name={name} placeholder=" " required={required} />
+  )}
+  <label for={id}>{label}</label>
+  {error && <span class="form-error">{error}</span>}
+</div>
