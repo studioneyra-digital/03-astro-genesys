@@ -2,12 +2,31 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/sections/Nav.astro';
 import Hero from '../components/sections/Hero.astro';
+import Card from '../components/elements/Card.astro';
+import StatsCounter from '../components/sections/StatsCounter.astro';
+import ServiceCard from '../components/sections/ServiceCard.astro';
+import ProjectsGrid from '../components/sections/ProjectsGrid.astro';
+import Plans from '../components/sections/Plans.astro';
+import Newsletter from '../components/sections/Newsletter.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import ClientLogos from '../components/sections/ClientLogos.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
 import Footer from '../components/sections/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 import ScrollTop from '../components/elements/ScrollTop.astro';
+import CookieBanner from '../components/elements/CookieBanner.astro';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services'))
+  .filter((s) => s.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
-<BaseLayout title="Genesys | Starter Theme" description="Scaffold check">
+<BaseLayout
+  title="Genesys | Starter Theme"
+  description="Soluciones tecnológicas y servicios digitales para empresas que buscan crecer en el mundo digital."
+>
   <Nav variant="over-hero" />
+
   <Hero
     eyebrowText="Tecnología · Estrategia · Resultados"
     sub="Somos un equipo de ingenieros, diseñadores y estrategas obsesionados con crear productos digitales que generan impacto real. Sin humo, sin atajos."
@@ -22,12 +41,172 @@ import ScrollTop from '../components/elements/ScrollTop.astro';
       <span class="hero__line"><span>desde hoy.</span></span>
     </Fragment>
   </Hero>
+
+  <!-- About Us -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow">Quiénes somos</span>
+        <h2 class="section-title" id="about-title">
+          No somos una agencia más.<br />Somos tu <span class="accent">equipo de producto</span>.
+        </h2>
+        <p class="section-lead">
+          Fundada en 2016, Genesys nació de una idea simple: las empresas merecen tecnología de nivel
+          enterprise sin los precios astronómicos ni la burocracia de las grandes consultoras.
+        </p>
+      </div>
+
+      <div class="row align-items-center g-5 mb-5">
+        <div class="col-lg-6" style="display:flex; flex-direction:column; gap:var(--space-6);">
+          <Card icon="target"><h3>Enfoque en resultados</h3><p>Cada línea de código, cada decisión de diseño responde a un objetivo de negocio concreto.</p></Card>
+          <Card icon="users"><h3>Equipo integrado</h3><p>Diseñadores, ingenieros y estrategas trabajando en un solo flujo, sin silos.</p></Card>
+          <Card icon="zap"><h3>Velocidad sin caos</h3><p>Metodología ágil real: entregas cada dos semanas, feedback continuo.</p></Card>
+        </div>
+        <div class="col-lg-6">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop"
+            alt="Equipo de Genesys trabajando en oficina moderna"
+            style="width:100%; border-radius:var(--radius-card); object-fit:cover; aspect-ratio:4/3;"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <StatsCounter
+        items={[
+          { value: 120, suffix: '+', label: 'Proyectos entregados', sub: 'En 8 países' },
+          { value: 8, label: 'Años de experiencia', sub: 'Desde 2016' },
+          { value: 40, suffix: '+', label: 'Clientes activos', sub: 'B2B & enterprise' },
+          { value: 98, suffix: '%', label: 'Satisfacción del cliente', sub: 'NPS · 2024' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <!-- Our Services (carousel) -->
+  <section class="section" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow">Nuestros servicios</span>
+        <h2 class="section-title" id="services-title">Todo lo que tu negocio necesita para crecer</h2>
+      </div>
+      <div class="swiper services-swiper">
+        <div class="swiper-wrapper">
+          {services.map((service) => (
+            <div class="swiper-slide">
+              <ServiceCard title={service.data.title} icon={service.data.icon} excerpt={service.data.excerpt} />
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section" style="background:var(--color-primary); color:#fff;" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow eyebrow--inverse">Por qué elegirnos</span>
+        <h2 class="section-title" style="color:#fff;" id="why-title">Resultados, no solo entregables</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <Card variant="glass" icon="trending-up" iconOnDark><h3>Crecimiento medible</h3><p>Métricas claras que demuestran el impacto de cada acción.</p></Card>
+        </div>
+        <div class="col-md-4">
+          <Card variant="glass" icon="shield" iconOnDark><h3>Seguridad enterprise</h3><p>Protocolos de nivel bancario para todos los proyectos.</p></Card>
+        </div>
+        <div class="col-md-4">
+          <Card variant="glass" icon="rocket" iconOnDark><h3>Lanzamientos rápidos</h3><p>De la idea a producción sin sacrificar calidad.</p></Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch Our Story -->
+  <section class="section" aria-labelledby="story-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow">Nuestra historia</span>
+        <h2 class="section-title" id="story-title">Ocho años construyendo con nuestros clientes</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" style="border-left:3px solid var(--color-accent); padding-left:var(--space-5);">
+          <h3>2016 — El comienzo</h3>
+          <p>Tres fundadores, un departamento y la convicción de que la tecnología debía ser accesible.</p>
+        </div>
+        <div class="col-md-4" style="border-left:3px solid var(--color-accent); padding-left:var(--space-5);">
+          <h3>2020 — Escalamos</h3>
+          <p>El equipo creció a 25 personas y abrimos operación remota en 3 países.</p>
+        </div>
+        <div class="col-md-4" style="border-left:3px solid var(--color-accent); padding-left:var(--space-5);">
+          <h3>2024 — Hoy</h3>
+          <p>Más de 120 proyectos entregados y un equipo de 40+ especialistas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Projects -->
+  <section class="section" style="background:var(--color-bg-soft);" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow">Portafolio</span>
+        <h2 class="section-title" id="projects-title">Proyectos que hablan por sí solos</h2>
+      </div>
+      <ProjectsGrid limit={2} />
+      <div style="text-align:center; margin-top:var(--space-6);">
+        <a href="/projects" class="card__link">Ver todos los proyectos <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Plans -->
+  <section class="section" aria-labelledby="plans-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow">Planes</span>
+        <h2 class="section-title" id="plans-title">Un plan para cada etapa de tu negocio</h2>
+      </div>
+      <Plans />
+    </div>
+  </section>
+
+  <Newsletter />
+
+  <!-- Testimonials + Client logos -->
+  <section class="section" style="background:var(--color-primary);" aria-labelledby="testimonials-title">
+    <div class="container">
+      <div class="section__head section__head--center wow animate__fadeInUp" data-wow-duration=".7s">
+        <span class="eyebrow eyebrow--inverse">Clientes</span>
+        <h2 class="section-title" style="color:#fff;" id="testimonials-title">Lo que dicen de nosotros</h2>
+      </div>
+      <Testimonials variant="dark" />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ClientLogos />
+    </div>
+  </section>
+
   <CtaBand
     title="¿Listo para dar el siguiente paso?"
     text="Agenda una consulta gratuita y descubre cómo podemos impulsar tu negocio digital."
     ctaPrimary={{ label: 'Agendar ahora', href: '/contact-us' }}
     ctaSecondary={{ label: 'Ver proyectos', href: '/projects' }}
   />
+
   <Footer />
+  <WhatsAppButton />
   <ScrollTop />
+  <CookieBanner />
+
+  <script>
+    import { initSectionSwipers } from '../scripts/section-swipers';
+    import { initScrollReveal } from '../scripts/scroll-reveal';
+    initSectionSwipers();
+    initScrollReveal();
+  </script>
 </BaseLayout>
