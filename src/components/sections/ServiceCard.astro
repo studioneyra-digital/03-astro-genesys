@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  icon: string;
+  excerpt: string;
+  href?: string;
+}
+const { title, icon, excerpt, href = '/services' } = Astro.props;
+---
+<div class="service-card">
+  <div class="icon-box"><i data-lucide={icon}></i></div>
+  <h3 class="service-card__title">{title}</h3>
+  <p class="service-card__text">{excerpt}</p>
+  <a href={href} class="service-card__link">
+    Ver servicio <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+  </a>
+</div>

@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import ServiceCard from './ServiceCard.astro';
+
+interface Props {
+  featuredOnly?: boolean;
+}
+const { featuredOnly = false } = Astro.props;
+const allServices = await getCollection('services');
+const services = (featuredOnly ? allServices.filter((s) => s.data.featured) : allServices).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+<div class="services-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5);">
+  {services.map((service) => (
+    <ServiceCard title={service.data.title} icon={service.data.icon} excerpt={service.data.excerpt} />
+  ))}
+</div>
