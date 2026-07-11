@@ -1,0 +1,24 @@
+---
+interface Step {
+  num: string;
+  icon: string;
+  title: string;
+  text: string;
+}
+const steps: Step[] = [
+  { num: '01', icon: 'file-text', title: 'Brief', text: 'Entendemos tus objetivos, audiencia y diferenciadores del negocio.' },
+  { num: '02', icon: 'pen-tool', title: 'Diseño', text: 'Wireframes, prototipo y propuesta visual con tu identidad de marca.' },
+  { num: '03', icon: 'code-2', title: 'Desarrollo', text: 'Código limpio, accesible y optimizado para velocidad y SEO.' },
+  { num: '04', icon: 'rocket', title: 'Lanzamiento', text: 'Deploy, QA final y capacitación para que gestiones el sitio.' },
+];
+---
+<div class="process-grid" style="grid-template-columns:repeat(4,1fr);">
+  {steps.map((step) => (
+    <div class="process-card">
+      <span class="process-card__num">{step.num}</span>
+      <div class="process-card__icon"><div class="icon-box icon-box--sm"><i data-lucide={step.icon}></i></div></div>
+      <h3 class="process-card__title">{step.title}</h3>
+      <p class="process-card__text">{step.text}</p>
+    </div>
+  ))}
+</div>

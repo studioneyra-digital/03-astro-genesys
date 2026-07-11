@@ -1,0 +1,26 @@
+---
+interface Props {
+  variant?: 'light' | 'ondark';
+}
+const { variant = 'light' } = Astro.props;
+const items = [
+  { icon: 'mail', label: 'Correo', value: 'hola@genesys.io', href: 'mailto:hola@genesys.io' },
+  { icon: 'phone', label: 'Teléfono', value: '+51 1 234 5678', href: 'tel:+5112345678' },
+  { icon: 'map-pin', label: 'Ubicación', value: 'Lima, Perú' },
+];
+---
+<div class={variant === 'ondark' ? 'contact-strip contact-strip--ondark' : 'contact-strip'}>
+  {items.map((item) => (
+    <div class="contact-strip__item">
+      <div class="icon-box icon-box--sm"><i data-lucide={item.icon}></i></div>
+      <div>
+        <div class="contact-strip__label">{item.label}</div>
+        {item.href ? (
+          <a href={item.href} class="contact-strip__value">{item.value}</a>
+        ) : (
+          <span class="contact-strip__value">{item.value}</span>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
