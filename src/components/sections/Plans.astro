@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+const plans = await getCollection('plans');
+
+function periodLabel(period: string): string {
+  if (period === 'month') return 'por mes';
+  if (period === 'year') return 'por año';
+  if (period === 'custom') return 'cotización a medida';
+  return 'pago único';
+}
+---
+<div class="plans-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5); align-items:start;">
+  {plans.map((plan) => (
+    <div class={plan.data.highlighted ? 'plan-card plan-card--featured' : 'plan-card'}>
+      {plan.data.highlighted && <div class="plan-card__badge">Más popular</div>}
+      <div class="plan-card__name">{plan.data.name}</div>
+      <div class="plan-card__price">{plan.data.price}</div>
+      <div class="plan-card__period">{periodLabel(plan.data.period)}</div>
+      <div class="plan-card__divider"></div>
+      <div class="plan-card__features">
+        {plan.data.features.map((feature) => (
+          <div class="plan-card__feature">
+            <i data-lucide="check" class="plan-card__feature-icon"></i> {feature}
+          </div>
+        ))}
+      </div>
+      <a
+        href="/contact-us"
+        class={plan.data.highlighted ? 'btn' : 'btn btn-outline'}
+        style={plan.data.highlighted
+          ? 'width:100%; justify-content:center; background:#fff; color:var(--color-accent); font-weight:700;'
+          : 'width:100%; justify-content:center;'}
+      >
+        {plan.data.highlighted ? 'Empezar' : 'Contactar'}
+      </a>
+    </div>
+  ))}
+</div>
