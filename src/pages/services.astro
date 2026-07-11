@@ -1,0 +1,25 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ServicesGrid from '../components/sections/ServicesGrid.astro';
+---
+<PageLayout
+  title="Servicios | Genesys"
+  description="Catálogo completo de servicios de diseño, desarrollo y estrategia digital de Genesys."
+  subhero={{
+    eyebrow: 'Nuestros servicios',
+    title: 'Lo que hacemos',
+    breadcrumb: [{ label: 'Inicio', href: '/' }, { label: 'Servicios' }],
+  }}
+  cta={{
+    title: 'Empieza tu proyecto hoy',
+    text: 'Cuéntanos tu idea y en 24 horas tendrás una propuesta personalizada.',
+    ctaPrimary: { label: 'Empezar', href: '/contact-us' },
+    ctaSecondary: { label: 'Conocer proceso', href: '/about-us' },
+  }}
+>
+  <section class="section">
+    <div class="container">
+      <ServicesGrid />
+    </div>
+  </section>
+</PageLayout>
