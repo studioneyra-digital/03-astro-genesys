@@ -1,0 +1,44 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/sections/Nav.astro';
+import SubHero from '../components/sections/SubHero.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Footer from '../components/sections/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import ScrollTop from '../components/elements/ScrollTop.astro';
+import CookieBanner from '../components/elements/CookieBanner.astro';
+
+interface CtaLink {
+  label: string;
+  href: string;
+}
+interface Props {
+  title: string;
+  description: string;
+  subhero: { eyebrow: string; title: string; breadcrumb: { label: string; href?: string }[] };
+  cta: {
+    title: string;
+    text: string;
+    ctaPrimary: CtaLink;
+    ctaSecondary?: CtaLink;
+    variant?: 'accent' | 'dark' | 'light';
+  };
+}
+const { title, description, subhero, cta } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <Nav />
+  <SubHero eyebrow={subhero.eyebrow} title={subhero.title} breadcrumb={subhero.breadcrumb} />
+  <slot />
+  <CtaBand
+    title={cta.title}
+    text={cta.text}
+    ctaPrimary={cta.ctaPrimary}
+    ctaSecondary={cta.ctaSecondary}
+    variant={cta.variant}
+  />
+  <Footer />
+  <WhatsAppButton />
+  <ScrollTop />
+  <CookieBanner />
+</BaseLayout>
