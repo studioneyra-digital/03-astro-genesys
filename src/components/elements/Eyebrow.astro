@@ -1,0 +1,9 @@
+---
+interface Props {
+  inverse?: boolean;
+  plain?: boolean;
+}
+const { inverse = false, plain = false } = Astro.props;
+const classes = ['eyebrow', inverse && 'eyebrow--inverse', plain && 'eyebrow--plain'].filter(Boolean).join(' ');
+---
+<span class={classes}><slot /></span>

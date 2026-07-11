@@ -1,0 +1,18 @@
+---
+interface Props {
+  variant?: 'base' | 'dark' | 'feature' | 'glass';
+  icon?: string;
+  iconOnDark?: boolean;
+}
+const { variant = 'base', icon, iconOnDark = false } = Astro.props;
+const cardClass = variant === 'base' ? 'card' : `card card--${variant}`;
+const iconClass = iconOnDark ? 'icon-box icon-box--ondark' : 'icon-box';
+---
+<div class={cardClass}>
+  {icon && (
+    <div class={iconClass}>
+      <i data-lucide={icon}></i>
+    </div>
+  )}
+  <slot />
+</div>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  variant: 'info' | 'success' | 'warning' | 'error';
+  icon: string;
+  title?: string;
+  dismissible?: boolean;
+}
+const { variant, icon, title, dismissible = true } = Astro.props;
+---
+<div class={`alert alert--${variant}`}>
+  <i data-lucide={icon} class="alert__icon"></i>
+  <div class="alert__body">
+    {title && <p class="alert__title">{title}</p>}
+    <p class="alert__text"><slot /></p>
+  </div>
+  {dismissible && (
+    <button class="alert__close" aria-label="Cerrar"><i data-lucide="x"></i></button>
+  )}
+</div>

@@ -1,0 +1,7 @@
+---
+interface Props {
+  variant?: 'accent' | 'dark' | 'light';
+}
+const { variant = 'accent' } = Astro.props;
+---
+<span class={`badge badge--${variant}`}><slot /></span>

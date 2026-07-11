@@ -1,0 +1,24 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'outline' | 'outline-light' | 'ghost';
+  size?: 'sm' | 'lg';
+  shape?: 'sharp' | 'soft' | 'pill';
+  block?: boolean;
+  type?: 'button' | 'submit';
+}
+const { href, variant = 'primary', size, shape, block = false, type = 'button' } = Astro.props;
+const classes = [
+  'btn',
+  `btn-${variant}`,
+  size && `btn-${size}`,
+  shape && `btn-${shape}`,
+  block && 'btn-block',
+]
+  .filter(Boolean)
+  .join(' ');
+const Tag = href ? 'a' : 'button';
+---
+<Tag class={classes} href={href} type={href ? undefined : type}>
+  <slot />
+</Tag>
