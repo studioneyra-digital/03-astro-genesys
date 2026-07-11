@@ -1,0 +1,25 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ProjectsGrid from '../components/sections/ProjectsGrid.astro';
+---
+<PageLayout
+  title="Proyectos | Genesys"
+  description="Portafolio de proyectos digitales entregados por Genesys."
+  subhero={{
+    eyebrow: 'Portafolio',
+    title: 'Nuestros proyectos',
+    breadcrumb: [{ label: 'Inicio', href: '/' }, { label: 'Proyectos' }],
+  }}
+  cta={{
+    title: 'Transforma tu presencia digital',
+    text: 'Más de 120 empresas ya confían en nosotros para crecer en el entorno digital.',
+    ctaPrimary: { label: 'Ver portafolio', href: '#' },
+    ctaSecondary: { label: 'Agendar demo', href: '/contact-us' },
+  }}
+>
+  <section class="section">
+    <div class="container">
+      <ProjectsGrid />
+    </div>
+  </section>
+</PageLayout>
