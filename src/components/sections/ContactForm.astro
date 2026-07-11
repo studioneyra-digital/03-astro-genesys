@@ -1,0 +1,43 @@
+---
+import FormField from '../elements/FormField.astro';
+---
+<form id="contactForm" novalidate>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <FormField id="c-name" name="name" label="Nombre completo" required />
+    </div>
+    <div class="col-md-6">
+      <FormField id="c-email" name="email" type="email" label="Correo electrónico" required />
+    </div>
+    <div class="col-md-6">
+      <FormField id="c-company" name="company" label="Empresa" required />
+    </div>
+    <div class="col-md-6">
+      <FormField id="c-phone" name="phone" type="tel" label="Teléfono (opcional)" />
+    </div>
+    <div class="col-12">
+      <FormField
+        id="c-service"
+        name="service"
+        type="select"
+        label="Servicio de interés"
+        required
+        options={['Diseño web', 'Desarrollo frontend', 'Estrategia digital', 'Automatizaciones IA']}
+      />
+    </div>
+    <div class="col-12">
+      <FormField id="c-msg" name="message" type="textarea" label="Mensaje" required />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block" style="margin-top:var(--space-6);">
+    <span class="btn__text">Enviar mensaje</span>
+  </button>
+  <div class="form-success" id="contactSuccess">
+    <i data-lucide="check-circle"></i>
+    ¡Mensaje enviado con éxito! Te contactaremos en menos de 24 horas.
+  </div>
+</form>
+<script>
+  import { initContactForm } from '../../scripts/contact-form';
+  initContactForm();
+</script>

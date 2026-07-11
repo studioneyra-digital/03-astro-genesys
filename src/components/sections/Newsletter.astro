@@ -1,0 +1,18 @@
+<div class="newsletter">
+  <div class="newsletter__inner">
+    <h2 class="newsletter__title">Recibe insights de diseño digital</h2>
+    <p class="newsletter__text">Recursos, tendencias y casos de estudio cada dos semanas. Sin spam, solo valor.</p>
+    <form class="newsletter__form" id="newsletterForm">
+      <input type="email" class="newsletter__input" name="email" placeholder="tu@email.com" aria-label="Correo electrónico" required />
+      <button type="submit" class="btn btn-primary">Suscribirme</button>
+    </form>
+    <div class="newsletter__success" id="newsletterSuccess">
+      <i data-lucide="check-circle"></i>
+      ¡Suscripción confirmada! Revisa tu bandeja de entrada.
+    </div>
+  </div>
+</div>
+<script>
+  import { initNewsletterForm } from '../../scripts/newsletter-form';
+  initNewsletterForm();
+</script>
